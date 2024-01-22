@@ -5,11 +5,15 @@ import homeScreen from "./homeScreen";
 import setting from "./setting";
 import Cart from "./Cart";
 import User from "./User";
+import  LoginScreen from "./LoginScreen";
+import  registerScreen from "./registerScreen";
 export{
     productDetail,
     welcome,
+    LoginScreen,
     homeScreen,
     setting,
     Cart,
     User,
+    registerScreen,
 }

@@ -1,23 +1,52 @@
 import React from "react";
-import {View,Text,TouchableOpacity} from "react-native"
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
 
-// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+function Footer(props) {
+  const navigation = useNavigation();
 
-// const Tab = createBottomTabNavigator();
-function Footer(props){
-    return(
-        <View style={{
-            marginVertical:20,
-            width:'100%',
-            flex:10,
-            backgroundColor:"blue",
-            justifyContent:'center',
-            alignItems:'center'
-        }}>
-            <Text>Footer</Text>
-            
-          </View>
+  const goToUserScreen = () => {
+    navigation.navigate("User");
+  };
 
-    ); 
+  const goTosettingScreen = () => {
+    navigation.navigate("setting");
+  };
+  const goToCartScreen = () => {
+    navigation.navigate("Cart");
+  };
+
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.iconContainer}>
+        <Icon name="home" size={30} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer} onPress={goToCartScreen}>
+        <Icon name="cart-plus" size={30} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer} onPress={goToUserScreen}>
+        <Icon name="user" size={30} color="white" />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.iconContainer} onPress={goTosettingScreen}>
+        <Icon name="cog" size={30} color="white" /> 
+      </TouchableOpacity>
+    </View>
+  );
 }
-export default Footer
+
+const styles = StyleSheet.create({
+  container: {
+    marginVertical: 20,
+    width: "100%",
+    flex: 10,
+    backgroundColor: "#3498db",
+    justifyContent: "space-around",
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  iconContainer: {
+  },
+});
+
+export default Footer;

@@ -16,11 +16,16 @@ function Cart({ route, navigation }) {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   };
 
+  
+
   const removeFromCart = (index) => {
     const newCartItems = [...cartItems];
     newCartItems.splice(index, 1);
     setCartItems(newCartItems);
   };
+
+
+
 
   const updateQuantity = (index, newQuantity) => {
     const newCartItems = [...cartItems];

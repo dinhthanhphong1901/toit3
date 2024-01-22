@@ -1,61 +1,86 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground,Image } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { useState } from "react";
+import {  StyleSheet,View, Text, TouchableOpacity,Image ,Pressable,ImageBackground,SafeArray, Alert,TextInput} from 'react-native';
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Welcome = ({ navigation }) => {
-    const { navigate } = navigation;
+function Welcome(props){
+    const {navigation,router} =props
+    // function cua navigate to/back
+    const {navigate,goBack}=navigation
 
-    return (
-        <ImageBackground
-            source={require('../assets/background.jpg')}
-            style={styles.background}
-        >
-            <View style={styles.container}>
+
+    return(  
+      
+      // <View style={{flex: 1, alignItems: "center"}}>    {/* </View> */}
+          <SafeAreaView style={styles.container}>
+            <StatusBar backgroundColor={'#ffffff'} barStyle="dark-content"></StatusBar>
+            <View>
+              <ImageBackground             source={require('../assets/background1.jpg')}
+          style={styles.background}
+      >
+             <View style={styles.form}>
                 <Image
-                    source={require('../assets/logo.png')}
+                    source={require('../assets/background.jpg')}
                     style={styles.logo}
                 />
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        navigate('MyTab');
-                    }}
-                >
-                    <Text style={styles.buttonText}>Đăng nhập</Text>
-                </TouchableOpacity>
             </View>
-        </ImageBackground>
-    );
-};
+            
+          </ImageBackground>
+              </View>
+              <View style={styles.title}>
+                <Text style={{fontWeight:'bold',fontSize:30,color:'black'}}></Text>
+
+                <Text>Bằng việc đăng nhập bạn đồng ý</Text>
+                <View style={{flexDirection:'row'}}>
+            <TouchableOpacity onPress={()=>Alert.alert('sau nay tao lam chuyen')}>
+                  <Text style={{color:'#1bcdff'}}>Điều khoản và chính sách bảo mật</Text></TouchableOpacity>
+                  </View>
+
+              </View>
+    
+              <View style={styles.form}>
+                    <View style={styles.group}>
+                        {/* <TextInput placeholder="Email Address" style={styles.ip}></TextInput> */}
+                    </View>
+              </View>
+
+
+
+
+                                <TouchableOpacity onPress={()=>{navigate('MyTab') }}
+                                  style={{
+                                      backgroundColor: "#f96163",
+                                      borderRadius: 18,
+                                      paddingVertical: 18,
+                                      width: "80%",
+                                      alignItems: "center",
+                                  }}>
+                                      <Text style={{ fontSize: 18, color: "aqua", fontWeight: "700" }}>login</Text>
+                                  </TouchableOpacity>
+                            
+          </SafeAreaView>
+                              
+)        
+}
 
 const styles = StyleSheet.create({
-    background: {
-        flex: 1,
-        resizeMode: 'cover',
-        justifyContent: 'center',
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        marginBottom: 30,
-        color: '#fff',
-    },
-    button: {
-        backgroundColor: '#3498db',
-        paddingVertical: 12,
-        paddingHorizontal: 20,
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
+  container: {
+    flex: 1,
+    backgroundColor:'#ffffff',
+    alignItems:'center'
+  },
+  title:{
+    marginTop:30,
+    alignItems:'center'
+  },
+  form:{
+    marginTop:30,
+    alignItems:'center'
+  },
+  ip:{
+    borderBottomWidth:1,
+    backgroundColor:'#fff',
+    borderColor:'red'
+  }
 });
-
-export default Welcome;
+export default Welcome
